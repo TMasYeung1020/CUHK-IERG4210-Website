@@ -1,0 +1,6 @@
+CHAN Tai Man
+100
+CHAN Chung Man
+90
+CHAN Siu Man
+80
