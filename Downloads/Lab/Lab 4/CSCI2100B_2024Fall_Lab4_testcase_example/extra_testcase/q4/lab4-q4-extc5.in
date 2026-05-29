@@ -1,0 +1,20 @@
+15
+insert 5
+query 10
+query 7
+insert 1
+query 16
+display
+insert 15
+query 15
+insert 8
+insert 5
+query 5
+display
+insert 20
+query 28
+query 31
+insert 35
+display
+
+
