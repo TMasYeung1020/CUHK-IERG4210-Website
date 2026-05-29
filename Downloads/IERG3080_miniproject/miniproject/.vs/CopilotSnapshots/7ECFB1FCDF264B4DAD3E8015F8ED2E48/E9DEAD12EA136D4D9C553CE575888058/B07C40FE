@@ -1,0 +1,36 @@
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+
+namespace miniproject
+{
+    public partial class SongSelectionPage : Page
+    {
+        private int selectedIndex = 0;
+
+        public SongSelectionPage()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnLeft_Click(object sender, RoutedEventArgs e)
+        {
+            // placeholder: decrement selection index
+            selectedIndex = System.Math.Max(0, selectedIndex - 1);
+            // TODO: update UI to reflect selection
+        }
+
+        private void BtnRight_Click(object sender, RoutedEventArgs e)
+        {
+            // placeholder: increment selection index
+            selectedIndex++;
+            // TODO: update UI to reflect selection
+        }
+
+        private void CenterTile_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // TODO: start the game or navigate to GameMenu
+            NavigationService?.Navigate(new GameMenuPage());
+        }
+    }
+}

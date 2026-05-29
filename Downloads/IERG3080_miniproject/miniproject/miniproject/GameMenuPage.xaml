@@ -1,0 +1,383 @@
+<Page x:Class="miniproject.GameMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:miniproject"
+      Title="GameMenuPage">
+
+    <Page.Resources>
+        <Storyboard x:Key="TopScrollStoryboard" RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetName="TopRect"
+                             Storyboard.TargetProperty="(Rectangle.Fill).(ImageBrush.RelativeTransform).(TranslateTransform.X)"
+                             From="0" To="-0.5" Duration="0:0:6" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource TopScrollStoryboard}" />
+        </EventTrigger>
+    </Page.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Scrolling background -->
+        <Rectangle x:Name="TopRect" Grid.Row="0">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/SongSelectionPageTop.png"
+                            TileMode="Tile"
+                            Viewport="0,0,0.5,1"
+                            ViewportUnits="RelativeToBoundingBox"
+                            Stretch="Fill">
+                    <ImageBrush.RelativeTransform>
+                        <TranslateTransform X="0" />
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- Page title -->
+        <TextBlock Grid.Row="0"
+                   Text="Select Difficulties"
+                   FontSize="48"
+                   FontWeight="Bold"
+                   Foreground="White"
+                   HorizontalAlignment="Center"
+                   Margin="0,12,0,6" />
+
+        <!-- Yellow song + difficulty card (size unchanged: 300x210) -->
+        <Border Width="300"
+                Height="210"
+                Background="#FFD700"
+                BorderBrush="#000"
+                BorderThickness="4"
+                CornerRadius="12"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <!-- Song name -->
+                    <RowDefinition Height="*" />
+                    <!-- Difficulty buttons -->
+                </Grid.RowDefinitions>
+
+                <!-- Song Name -->
+                <TextBlock Text="24K  TRIBE OF GOLD"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="#000"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"
+                           Margin="0,16,0,12"
+                           Grid.Row="0" />
+
+                <!-- Difficulty Selection Panel -->
+                <StackPanel x:Name="CenterInfo"
+                            Opacity="1"
+                            Orientation="Vertical"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            Margin="12,0"
+                            Grid.Row="1">
+
+                    <!-- Easy Difficulty Button -->
+                    <Button Height="36"
+                            Margin="0,4"
+                            Background="#FFA84D"
+                            BorderThickness="0"
+                            Click="EasyButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="8"
+                                            Padding="6"/>
+
+                                    <Border x:Name="HoverOverlay"
+                                            Background="Black"
+                                            Opacity="0"
+                                            CornerRadius="8"/>
+
+                                    <Grid Margin="6">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="36" />
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Source="/easy.png"
+                                               Width="28"
+                                               Height="28"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Grid.Column="0" />
+
+                                        <TextBlock Text="Easy"
+                                                   FontWeight="Bold"
+                                                   Foreground="#000"
+                                                   FontSize="14"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Grid.Column="1" />
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    Grid.Column="2"
+                                                    Margin="8,0">
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="0.1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="0.1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="0.1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="0.1" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="HoverOverlay" Property="Opacity" Value="0.3" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Medium Difficulty Button -->
+                    <Button Height="36"
+                            Margin="0,4"
+                            Background="#FF8C1A"
+                            BorderThickness="0"
+                            Click="MediumButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="8"
+                                            Padding="6"/>
+
+                                    <Border x:Name="HoverOverlay"
+                                            Background="Black"
+                                            Opacity="0"
+                                            CornerRadius="8"/>
+
+                                    <Grid Margin="6">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="36" />
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Source="/medium.png"
+                                               Width="28"
+                                               Height="28"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Grid.Column="0" />
+
+                                        <TextBlock Text="Medium"
+                                                   FontWeight="Bold"
+                                                   Foreground="#000"
+                                                   FontSize="14"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Grid.Column="1" />
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    Grid.Column="2"
+                                                    Margin="8,0">
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="0.1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="0.1" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="HoverOverlay" Property="Opacity" Value="0.3" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <!-- Hard Difficulty Button -->
+                    <Button Height="36"
+                            Margin="0,4"
+                            Background="#FF6A00"
+                            BorderThickness="0"
+                            Click="HardButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="8"
+                                            Padding="6"/>
+
+                                    <Border x:Name="HoverOverlay"
+                                            Background="Black"
+                                            Opacity="0"
+                                            CornerRadius="8"/>
+
+                                    <Grid Margin="6">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="36" />
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Source="/hard.png"
+                                               Width="28"
+                                               Height="28"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Grid.Column="0" />
+
+                                        <TextBlock Text="Hard"
+                                                   FontWeight="Bold"
+                                                   Foreground="#000"
+                                                   FontSize="14"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Grid.Column="1" />
+
+                                        <StackPanel Orientation="Horizontal"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    Grid.Column="2"
+                                                    Margin="8,0">
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="1" />
+                                            <Ellipse Width="8" Height="8" Fill="#FFF" Margin="2" Opacity="1" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="HoverOverlay" Property="Opacity" Value="0.3" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Bottom-left SETTING button with black hover overlay -->
+        <Border x:Name="SettingCorner"
+Grid.Row="1"
+Width="160"
+Height="72"
+Background="#9FD3FF"
+BorderBrush="#000"
+BorderThickness="3"
+CornerRadius="8"
+HorizontalAlignment="Left"
+VerticalAlignment="Bottom"
+Margin="20"
+Cursor="Hand">
+
+            <Button Background="Transparent" BorderThickness="0" Click="RightTile_MouseLeftButtonDown">
+                <!-- Keeps your existing click handler -->
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <!-- Original blue background -->
+                            <Border Background="#9FD3FF"
+                    CornerRadius="8"/>
+
+                            <!-- Black hover overlay -->
+                            <Border x:Name="HoverOverlay"
+                    Background="Black"
+                    Opacity="0"
+                    CornerRadius="8"/>
+
+                            <!-- Text -->
+                            <TextBlock Text="SETTING"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="#FFF"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="HoverOverlay" Property="Opacity" Value="0.3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Border>
+
+
+        <!-- Bottom-right BACK button with hover overlay effect -->
+        <Border x:Name="BackCorner"
+                Grid.Row="0"
+                Width="160"
+                Height="72"
+                Background="#FF6B6B"
+                BorderBrush="#000"
+                BorderThickness="3"
+                CornerRadius="8"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="20"
+                Cursor="Hand">
+
+            <!-- Turn the Border into a clickable button by wrapping content in a Button with custom template -->
+            <Button Background="Transparent"
+                    BorderThickness="0"
+                    Click="LeftTile_MouseLeftButtonDown">
+                <!-- Keep your existing handler name -->
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <!-- Original red background -->
+                            <Border Background="#FF6B6B"
+                                    CornerRadius="8"/>
+
+                            <!-- Hover overlay -->
+                            <Border x:Name="HoverOverlay"
+                                    Background="Black"
+                                    Opacity="0"
+                                    CornerRadius="8"/>
+
+                            <!-- Text content -->
+                            <TextBlock Text="BACK"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Foreground="#FFF"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="HoverOverlay" Property="Opacity" Value="0.3" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Border>
+
+    </Grid>
+</Page>

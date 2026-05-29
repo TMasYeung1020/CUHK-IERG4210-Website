@@ -1,0 +1,141 @@
+﻿<Page x:Class="miniproject.happyResult"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignWidth="1600" d:DesignHeight="900"
+      Title="happyResult"
+      Loaded="Page_Loaded">
+    <Page.Resources>
+        <!-- Door animations -->
+        <Storyboard x:Key="DoorCloseStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TopHalfTransform" Storyboard.TargetProperty="Y" From="0" To="-450" Duration="0:0:0.6"/>
+            <DoubleAnimation Storyboard.TargetName="BottomHalfTransform" Storyboard.TargetProperty="Y" From="0" To="450" Duration="0:0:0.6"/>
+        </Storyboard>
+        <Storyboard x:Key="DoorOpenStoryboard">
+            <DoubleAnimation Storyboard.TargetName="TopHalfTransform" Storyboard.TargetProperty="Y" From="-450" To="0" Duration="0:0:0.6"/>
+            <DoubleAnimation Storyboard.TargetName="BottomHalfTransform" Storyboard.TargetProperty="Y" From="450" To="0" Duration="0:0:0.6"/>
+        </Storyboard>
+        <!-- Character bounce and continuous jump -->
+        <Storyboard x:Key="CharacterBounceStoryboard" BeginTime="0:0:0.3">
+            <DoubleAnimation Storyboard.TargetName="Image3Transform" Storyboard.TargetProperty="Y" From="-100" To="0" Duration="0:0:0.8">
+                <DoubleAnimation.EasingFunction>
+                    <BounceEase Bounces="2" Bounciness="2" EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="Image4Transform" Storyboard.TargetProperty="Y" From="-100" To="0" Duration="0:0:0.8" BeginTime="0:0:0.1">
+                <DoubleAnimation.EasingFunction>
+                    <BounceEase Bounces="2" Bounciness="2" EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="HappyPeopleTransform" Storyboard.TargetProperty="Y" From="-150" To="0" Duration="0:0:1.0" BeginTime="0:0:0.2">
+                <DoubleAnimation.EasingFunction>
+                    <BounceEase Bounces="3" Bounciness="2" EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="ContinuousJumpStoryboard">
+            <DoubleAnimation Storyboard.TargetName="Image3Transform" Storyboard.TargetProperty="Y" From="0" To="-20" Duration="0:0:0.2" AutoReverse="True" RepeatBehavior="Forever">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="Image4Transform" Storyboard.TargetProperty="Y" From="0" To="-20" Duration="0:0:0.2" AutoReverse="True" RepeatBehavior="Forever" BeginTime="0:0:0.1">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="HappyPeopleTransform" Storyboard.TargetProperty="Y" From="0" To="-30" Duration="0:0:0.3" AutoReverse="True" RepeatBehavior="Forever" BeginTime="0:0:0.15">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+
+    <Viewbox Stretch="UniformToFill" StretchDirection="Both">
+        <Grid Width="1600" Height="900">
+            <!-- Background layers -->
+            <Grid x:Name="Layer1" Panel.ZIndex="0">
+                <Grid Height="450" VerticalAlignment="Top" ClipToBounds="True">
+                    <Grid.RenderTransform>
+                        <TranslateTransform x:Name="TopHalfTransform" Y="-450"/>
+                    </Grid.RenderTransform>
+                    <Grid Width="1600" Height="900" VerticalAlignment="Top">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/Assets/Result_bkg1.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,225" Stretch="Fill"/>
+                        </Grid.Background>
+                    </Grid>
+                </Grid>
+                <Grid Height="450" VerticalAlignment="Bottom" ClipToBounds="True">
+                    <Grid.RenderTransform>
+                        <TranslateTransform x:Name="BottomHalfTransform" Y="450"/>
+                    </Grid.RenderTransform>
+                    <Grid Width="1600" Height="900" VerticalAlignment="Bottom" Margin="0,0,0,-450">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/Assets/Result_bkg1.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,200,225" Stretch="Fill"/>
+                        </Grid.Background>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <!-- Characters -->
+            <Canvas x:Name="PeopleLayer" Width="1600" Height="900" Panel.ZIndex="10">
+                <Image x:Name="Image3" Canvas.Left="373" Canvas.Top="437" Width="264" Height="286">
+                    <Image.RenderTransform>
+                        <TranslateTransform x:Name="Image3Transform" Y="-100"/>
+                    </Image.RenderTransform>
+                </Image>
+                <Image x:Name="Image4" Canvas.Left="900" Canvas.Top="445" Width="260" Height="270">
+                    <Image.RenderTransform>
+                        <TranslateTransform x:Name="Image4Transform" Y="-100"/>
+                    </Image.RenderTransform>
+                </Image>
+            </Canvas>
+
+            <!-- Decorations -->
+            <Image x:Name="Result_bkg2_Top" Panel.ZIndex="20" Source="/Assets/Result_bkg2.png" Height="245" VerticalAlignment="Top" Margin="-114,-105,-64,0"/>
+            <Image x:Name="Result_bkg2_Bottom" Panel.ZIndex="20" Source="/Assets/Result_bkg2.png" Height="245" VerticalAlignment="Top" Margin="-13,760,-14,0"/>
+            <Image x:Name="happyPeople" Panel.ZIndex="30" Source="/Assets/happyPeople.png" Width="520" Height="320" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="562,415,0,0">
+                <Image.RenderTransform>
+                    <TranslateTransform x:Name="HappyPeopleTransform" Y="-150"/>
+                </Image.RenderTransform>
+            </Image>
+
+    <!-- Result Statistics - 右手邊白色矩形區塊 -->
+<Border x:Name="StatsBorder" 
+        Background="White" 
+        CornerRadius="20" 
+        Padding="30,20" 
+        Margin="50,0,70,350"  
+        HorizontalAlignment="Right" 
+        VerticalAlignment="Bottom" 
+        Panel.ZIndex="40" 
+        Visibility="Collapsed" 
+        Opacity="0">
+    <Border.RenderTransform>
+        <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+    </Border.RenderTransform>
+    <Border.Effect>
+        <DropShadowEffect Color="Black" ShadowDepth="8" BlurRadius="20" Opacity="0.5"/>
+    </Border.Effect>
+    <StackPanel>
+                    <TextBlock x:Name="ScoreText" Text="Score: 0" FontSize="48" Foreground="#FF2D00" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,5">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="Black" ShadowDepth="4" BlurRadius="8" Opacity="0.8"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <TextBlock x:Name="ComboText" Text="Max Combo: 0" FontSize="36" Foreground="Gold" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,0">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="Black" ShadowDepth="3" BlurRadius="6"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <TextBlock x:Name="PerfectText" Text="Perfect: 0" FontSize="32" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                    <TextBlock x:Name="GoodText" Text="Good: 0" FontSize="32" Foreground="LimeGreen" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock x:Name="BadText" Text="Bad: 0" FontSize="32" Foreground="Crimson" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Viewbox>
+</Page>

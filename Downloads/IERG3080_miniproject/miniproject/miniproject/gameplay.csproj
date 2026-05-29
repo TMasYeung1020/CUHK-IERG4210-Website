@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Asserts\**" />
+    <EmbeddedResource Remove="Asserts\**" />
+    <None Remove="Asserts\**" />
+    <Page Remove="Asserts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\24karats TRIBE OF GOLD.mp3" />
+    <None Remove="Assets\24karats TRIBE OF GOLD.ogg" />
+    <None Remove="Assets\bg_don_5a.png" />
+    <None Remove="Assets\drum.png" />
+    <None Remove="Assets\level.png" />
+    <None Remove="Assets\lower_bg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\bg_don_5a.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\lower_bg.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\24karats TRIBE OF GOLD.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\drum.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\level.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+﻿<Window x:Class="miniproject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Taiko Game"
+        Width="800"
+        Height="450"
+        WindowState="Normal"
+        ResizeMode="CanResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Black">
+
+    <Grid>
+        <Frame x:Name="MainFrame"
+               NavigationUIVisibility="Hidden" />
+    </Grid>
+</Window>

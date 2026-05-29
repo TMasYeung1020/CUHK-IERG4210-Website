@@ -1,0 +1,12 @@
+﻿<Page x:Class="miniproject.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:miniproject"
+      Title="StartPage">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Start Page" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,10" />
+            <Button x:Name="BtnStart" Content="Go to Song Selection" Width="220" Height="40" Click="BtnStart_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

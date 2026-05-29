@@ -1,0 +1,58 @@
+﻿<Page x:Class="miniproject.SongSelectionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:miniproject"
+      Title="SongSelectionPage">
+    <Page.Resources>
+        <Storyboard x:Key="TopScrollStoryboard" RepeatBehavior="Forever">
+            <DoubleAnimation Storyboard.TargetName="TopRect"
+                             Storyboard.TargetProperty="(Rectangle.Fill).(ImageBrush.RelativeTransform).(TranslateTransform.X)"
+                             From="0" To="-0.5" Duration="0:0:6" RepeatBehavior="Forever" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource TopScrollStoryboard}" />
+        </EventTrigger>
+    </Page.Triggers>
+
+    <Grid>
+        <!-- Rows: top 80% (4*), bottom 20% (1*) -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="0*" />
+        </Grid.RowDefinitions>
+
+        <!-- Top: tiled/scrolling background -->
+        <Rectangle x:Name="TopRect" Grid.Row="0" Grid.RowSpan="2">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/SongSelectionPageTop.png"
+                            TileMode="Tile"
+                            Viewport="0,0,0.5,1"
+                            ViewportUnits="RelativeToBoundingBox"
+                            Stretch="Fill">
+                    <ImageBrush.RelativeTransform>
+                        <TranslateTransform X="0" />
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- Bottom: tiled pattern that repeats across the width -->
+        <Rectangle Grid.Row="1" x:Name="BottomRect">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/SongSelectionPageBottom.png"
+                            TileMode="Tile"
+                            Viewport="0,0,0.12,1"
+                            ViewportUnits="RelativeToBoundingBox"
+                            Stretch="Fill" />
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- Red overlay over the bottom row (semi-transparent) -->
+        <Rectangle Grid.Row="1" Fill="Red" Opacity="0.25" IsHitTestVisible="False" />
+
+        <!-- Example content on top (center) can be added here -->
+    </Grid>
+</Page>

@@ -1,0 +1,18 @@
+﻿using System.Windows;
+using System.Windows.Controls;
+
+namespace miniproject
+{
+    public partial class StartPage : Page
+    {
+        public StartPage()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new SongSelectionPage());
+        }
+    }
+}

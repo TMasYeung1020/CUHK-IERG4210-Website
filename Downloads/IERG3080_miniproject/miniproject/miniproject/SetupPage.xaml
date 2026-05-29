@@ -1,0 +1,107 @@
+<Page x:Class="miniproject.SetupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="SetupPage">
+
+    <Grid>
+        <!-- Tiled background -->
+        <Rectangle>
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/SetupBKG.png"
+                            TileMode="Tile"
+                            Viewport="0,0,0.25,0.25"
+                            ViewportUnits="RelativeToBoundingBox"
+                            Stretch="UniformToFill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!-- Compact panel -->
+        <Border Background="#F5E8D0"
+                CornerRadius="20"
+                BorderBrush="#000"
+                BorderThickness="5"
+                Padding="20"
+                Width="480"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <StackPanel>
+                <!-- Title -->
+                <TextBlock Text="SETTINGS"
+                           FontSize="34"
+                           FontWeight="Bold"
+                           Foreground="#000"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,12"/>
+
+                <!-- Player 1: text and 4 buttons on the same line -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,8">
+                    <TextBlock Text="Player 1:"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,15,0"/>
+                    <Button x:Name="Btn_P1_Key1" Content="D" Width="60" Height="45" FontSize="22" Background="#FF4444" Foreground="White" Margin="4" Click="KeyButton_Click"/>
+                    <Button x:Name="Btn_P1_Key2" Content="F" Width="60" Height="45" FontSize="22" Background="#4444FF" Foreground="White" Margin="4" Click="KeyButton_Click"/>
+                    <Button x:Name="Btn_P1_Key3" Content="J" Width="60" Height="45" FontSize="22" Background="#FF4444" Foreground="White" Margin="4" Click="KeyButton_Click"/>
+                    <Button x:Name="Btn_P1_Key4" Content="K" Width="60" Height="45" FontSize="22" Background="#4444FF" Foreground="White" Margin="4" Click="KeyButton_Click"/>
+                </StackPanel>
+
+                <!-- Player 2: text and 4 buttons on the same line -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,20">
+                    <TextBlock Text="Player 2:"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,15,0"/>
+                    <Button x:Name="Btn_P2_Key1" Content="A" Width="60" Height="45" FontSize="22" Background="#FF4444" Foreground="White" Margin="4" Click="KeyButton_Click"/>
+                    <Button x:Name="Btn_P2_Key2" Content="S" Width="60" Height="45" FontSize="22" Background="#4444FF" Foreground="White" Margin="4" Click="KeyButton_Click"/>
+                    <Button x:Name="Btn_P2_Key3" Content="L" Width="60" Height="45" FontSize="22" Background="#FF4444" Foreground="White" Margin="4" Click="KeyButton_Click"/>
+                    <Button x:Name="Btn_P2_Key4" Content=";" Width="60" Height="45" FontSize="22" Background="#4444FF" Foreground="White" Margin="4" Click="KeyButton_Click"/>
+                </StackPanel>
+
+                <!-- Scrolling Speed -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,25">
+                    <TextBlock Text="Scrolling Speed:"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,12,0"/>
+                    <Button x:Name="Speed1x" Content="1x" Width="55" Height="35" FontSize="18" Background="#D0D0D0" Foreground="#000" Margin="4" Click="SpeedButton_Click" Tag="1"/>
+                    <Button x:Name="Speed2x" Content="2x" Width="55" Height="35" FontSize="18" Background="#D0D0D0" Foreground="#000" Margin="4" Click="SpeedButton_Click" Tag="2"/>
+                    <Button x:Name="Speed3x" Content="3x" Width="55" Height="35" FontSize="18" Background="#D0D0D0" Foreground="#000" Margin="4" Click="SpeedButton_Click" Tag="3"/>
+                    <Button x:Name="Speed4x" Content="4x" Width="55" Height="35" FontSize="18" Background="#D0D0D0" Foreground="#000" Margin="4" Click="SpeedButton_Click" Tag="4"/>
+                </StackPanel>
+
+                <!-- Bottom buttons -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <Button Content="RESET TO DEFAULT"
+                            Width="200"
+                            Height="45"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Background="#C0C0C0"
+                            Foreground="#000"
+                            Margin="0,0,25,0"
+                            Click="ResetButton_Click"/>
+                    <Button Content="CONFIRM"
+                            Width="140"
+                            Height="45"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Background="#FFD700"
+                            Foreground="#000"
+                            Click="ConfirmButton_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

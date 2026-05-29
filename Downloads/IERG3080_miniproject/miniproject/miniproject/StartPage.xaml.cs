@@ -1,0 +1,77 @@
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+
+namespace miniproject
+{
+    public partial class StartPage : Page
+    {
+        public StartPage()
+        {
+            InitializeComponent();
+            Loaded += StartPage_Loaded;
+            SizeChanged += StartPage_SizeChanged;
+            this.MouseLeftButtonDown += StartPage_MouseLeftButtonDown;
+            this.KeyDown += StartPage_KeyDown;
+            Focusable = true;
+            Focus();
+        }
+
+        private void StartPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            PositionPrompt();
+        }
+
+        private void StartPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            PositionPrompt();
+        }
+
+        private void PositionPrompt()
+        {
+            // Measure logo bottom relative to page
+            if (LogoImage == null || PromptText == null)
+                return;
+
+            // Transform the bottom point of the logo to page coordinates
+            var transform = LogoImage.TransformToAncestor(this) as GeneralTransform;
+            if (transform == null)
+                return;
+
+            var logoBounds = transform.TransformBounds(new Rect(0, 0, LogoImage.ActualWidth, LogoImage.ActualHeight));
+            double logoBottom = logoBounds.Bottom;
+            double pageBottom = this.ActualHeight;
+
+            // Use a smaller factor than 0.5 to position the prompt higher than the halfway point
+            double verticalFactor = 0.15; // 35% down from logo bottom towards page bottom
+            double delta = (pageBottom - logoBottom) * verticalFactor;
+
+            // Set the margin top within the bottom row so the prompt sits delta pixels below the logo bottom
+            PromptText.Margin = new Thickness(0, delta, 0, 0);
+        }
+
+        private void StartPage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigateToSongSelection();
+        }
+
+        private void StartPage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                NavigateToSongSelection();
+            }
+        }
+
+        private void NavigateToSongSelection()
+        {
+            NavigationService?.Navigate(new SongSelectionPage());
+        }
+
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateToSongSelection();
+        }
+    }
+}

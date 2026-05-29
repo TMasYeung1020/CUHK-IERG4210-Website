@@ -1,0 +1,75 @@
+﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
+
+namespace miniproject
+{
+    public partial class SongSelectionPage : Page
+    {
+        public SongSelectionPage()
+        {
+            InitializeComponent();
+
+            BottomGrid.MouseLeftButtonDown += BottomGrid_MouseLeftButtonDown;
+            BottomGrid.MouseLeftButtonUp += BottomGrid_MouseLeftButtonUp;
+            BottomGrid.TouchDown += BottomGrid_TouchDown;
+            BottomGrid.TouchUp += BottomGrid_TouchUp;
+
+            BottomGrid.MouseLeave += BottomGrid_MouseLeave;
+
+            // show overlay immediately when the cursor enters or moves over the bottom area
+            BottomGrid.MouseEnter += BottomGrid_MouseEnter;
+            BottomGrid.MouseMove += BottomGrid_MouseMove;
+        }
+
+        private void BottomGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var sb = (Storyboard)FindResource("PressOverlayStoryboard");
+            sb.Begin();
+        }
+
+        private void BottomGrid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var sb = (Storyboard)FindResource("ReleaseOverlayStoryboard");
+            sb.Begin();
+        }
+
+        private void BottomGrid_TouchDown(object sender, TouchEventArgs e)
+        {
+            var sb = (Storyboard)FindResource("PressOverlayStoryboard");
+            sb.Begin();
+        }
+
+        private void BottomGrid_TouchUp(object sender, TouchEventArgs e)
+        {
+            var sb = (Storyboard)FindResource("ReleaseOverlayStoryboard");
+            sb.Begin();
+        }
+
+        private void BottomGrid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            // ensure overlay is removed if cursor leaves area
+            var sb = (Storyboard)FindResource("ReleaseOverlayStoryboard");
+            sb.Begin();
+        }
+
+        private void BottomGrid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var sb = (Storyboard)FindResource("PressOverlayStoryboard");
+            sb.Begin();
+        }
+
+        private void BottomGrid_MouseMove(object sender, MouseEventArgs e)
+        {
+            // ensure overlay is visible while moving inside the bottom area
+            var sb = (Storyboard)FindResource("PressOverlayStoryboard");
+            sb.Begin();
+        }
+
+        private void BtnToGameMenu_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new GameMenuPage());
+        }
+    }
+}

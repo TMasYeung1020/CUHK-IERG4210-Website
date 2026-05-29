@@ -1,0 +1,24 @@
+﻿<Page x:Class="miniproject.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:miniproject"
+      Title="StartPage">
+    <Page.Background>
+        <ImageBrush ImageSource="Images/StartPageBKG.png" Stretch="UniformToFill" />
+    </Page.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" x:Name="BottomRow" />
+        </Grid.RowDefinitions>
+
+        <!-- Centered logo -->
+        <Image Grid.Row="1" x:Name="LogoImage" Source="Images/StartPageLogo.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <!-- Prompt placed in the bottom row; actual vertical offset will be set in code-behind to be halfway in the bottom space -->
+        <TextBlock Grid.Row="2" x:Name="PromptText" Text="Click or Press Enter" FontSize="18" Foreground="White"
+                   HorizontalAlignment="Center" VerticalAlignment="Top" />
+    </Grid>
+</Page>
