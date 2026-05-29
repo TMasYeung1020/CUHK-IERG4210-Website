@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobby1</title>
+    <script>
+        var Shoot = new Array(5);
+        var ImageRunner = 0;
+        var ImagesLoad = 0;
+
+        for(var i = 0; i < Shoot.length; i++) {
+            Shoot[i] = new Image();
+            Shoot[i].src = "Shooting" + (i + 1) +".jpg";
+            Shoot[i].onload = run();
+        }
+        function run() {
+            ImagesLoad++;
+            if (ImagesLoad == Shoot.length)
+                setInterval("running()",200);
+        }
+        function running() {
+            if (ImageRunner == (Shoot.length - 1)) {
+                ImageRunner = 0;}
+            else {
+                ImageRunner++;}
+            document.Animation.src = Shoot[ImageRunner].src;
+        }
+
+    </script>
+
+    <style>
+        body{
+            background-image: url(Court.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .Title{
+            text-align: center;
+            background-color: orange;
+            border-radius: 20px;
+            border: 10px dashed black;
+            animation-name: imgAni;
+            animation-duration: 4.5s;
+            animation-iteration-count: infinite;
+        }
+        .Quote{
+            text-align: justify;
+            float: left;
+            height: 208px;
+            width: 72%;
+            display: inline;
+            margin-top: 20px;
+            font-weight: 200;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 30px;
+            line-height: 1.5;
+            background-color: aliceblue;
+            border-radius: 10px;
+        }
+        .Kobe{
+            float: left;
+            width: 28%;
+        }
+        .KobePhoto{
+            border-radius: 200px;
+            border: 10px dotted purple;
+            height: 200px;
+            width: 300px;
+            background-color: whitesmoke;
+        }
+        img:hover{
+            background-color: red;
+            filter: blur(1px);
+        }
+        .ClickKobe{
+            float: left;
+            color: wheat;
+            background-color: brown;
+            border-radius: 10px;
+            border: 3px solid greenyellow;
+            animation-name: imgAni;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            margin: 2px;
+        }
+
+        @keyframes imgAni {
+            0% {background-color: magenta;} 
+            25% {background-color: purple;} 
+            50% {background-color: yellow;} 
+            75% {background-color: green;}
+            100% {background-color: lightblue;}
+        }
+        .BiggerText{
+            font-size: 40px;
+            color:goldenrod;
+            text-decoration: underline;
+        }
+        .NextPage{
+            float:right;
+            background-color: beige;
+            margin:3px;
+        }
+        .Return{
+            float:right;
+            background-color: beige;
+            margin:3px;
+        }
+        a:hover{
+            color:aliceblue;
+            background-color: black;
+        }
+        .Mywords{
+            margin-top: 10px;
+            float: left;
+            border: 10px outset goldenrod;
+            border-radius: 5px;
+            color:darkred;
+            background-color: antiquewhite;
+            padding: 15pt 0 15pt 0;
+            align-items: center;
+            font-size: 1.41em;
+        }
+        
+    </style>
+
+</head>
+<body>
+    
+    <div class="Title">
+        <h2>My HOBBY1 - BasketBall</h2>
+    </div>
+
+    <div class="Kobe">
+        <a href="https://zh.wikipedia.org/zh-hk/%E7%A7%91%E6%AF%94%C2%B7%E5%B8%83%E8%8E%B1%E6%81%A9%E7%89%B9">
+        <img src="Kobe.webp" class="KobePhoto"></a>
+    </div>
+
+    <div class="Quote">
+        "I'll do whatever it takes to win games, whether it's sitting on a bench waving a towel
+        , <span class="BiggerText">handing a cup of water to a teammate</span>, 
+        or <span class="BiggerText">hitting the game-winning shot</span>."
+        <br/>
+        <strong style="color:darkgray; float: right;">- Kobe Bryant</strong>
+    </div>
+
+    <div class="ClickKobe">
+        Click Photo to know more about Kobe's career
+    </div>
+
+    <div class="NextPage">
+        <a href="hobby2.html">
+            Next Hobby
+        </a>
+    </div>
+
+    <div class="Return">
+        <a href="index.html">Back To Home Page</a>
+    </div>
+
+    <div class="Mywords">
+        Basketball is a great way of exercise and a great way to have fun with 
+        friends and possibly make some new ones. I love to watch and play the game, 
+        basketball is a very entertaining sport and can be played by anyone.
+    </div>
+
+    <div>
+        <img src="Shooting1.jpg" name="Animation" width="200px" height="300px">
+    </div>
+
+</body>
+</html>

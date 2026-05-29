@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Toassing</title>
+       <script>
+        function TossCoin(){
+            var T = document.getElementById("NumOfToss").value;
+            var heads = 0;
+            var tails = 0;
+            for (var i = 0; i < T;i++){
+                var Boolean = filp();
+                if (Boolean){
+                    heads += 1;
+                } else {
+                    tails += 1;
+                }
+            }
+            document.getElementById("TotalHeads").innerHTML = "total number of heads : " + heads;
+            document.getElementById("TotalTails").innerHTML = "total number of tails : " + tails;
+        }
+        function Reset(){
+            document.getElementById("form").reset();
+            document.getElementById("totalheads").innerHTML = "";
+            document.getElementById("totaltails").innerHTML = "";
+        }
+        function filp(){
+            var n = Math.floor(Math.random() * 2);
+            if (n==1){
+                return true
+            } else {return false}
+        }
+    </script>
+    <style>
+        body{
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: lightblue;
+        }
+        div{
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Coin Tossing Simulation</h1>
+    
+    <div>Enter your the number of tosses you want here</div>
+    
+    <form id="form">
+        <input type="text" size="30" id="NumOfToss">
+        <input type="button" value="Toss" onClick="TossCoin()">
+        <input type="button" value="Reset" onClick="Reset()">
+    </form>
+    
+    <p id="TotalHeads"></p>
+    <p id="TotalTails"></p>
+</body>
+
+</html>

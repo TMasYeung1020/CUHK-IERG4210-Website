@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Founder Page</title>
+    <style>
+        body{
+            background-image: url(Mainbackground.avif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+        }
+        .companyname{
+            height:fit-content;
+            width: 100%;
+            background-image: url(companynamebackground.avif);
+            text-align: center;
+            margin-top: -7px;
+            margin-left: -7.25px;
+            border: 3px solid black;
+            float:left;
+        }
+        .FYEO{
+            position: absolute;
+            transform: translate(-180%, 120%);
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight:bolder;
+            font-style: italic;
+        }  
+        .companylimited{
+            font-size: 40px;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        .navbar {
+            float: left;
+            overflow: hidden;
+            background-image: url(Barbackground.avif);
+            margin-left: -7px;
+            width: 100%;
+            height: 58px;
+        }
+        .navbar a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .dropdown {
+            float: left;
+        }
+
+        .dropdown .dropbtn {
+            padding-top: 3px;
+            font-size: 20px;
+            border: none;
+            outline: none;
+            color: black;
+            background-color: inherit;
+        }
+
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: brown;
+            color: white;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: green;
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .NextLevel{
+            position: fixed;
+            bottom: 10px;
+            left: 20px;
+        }
+        .NextNextLevel{
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+        }
+        .NextNextLevel a{
+            text-decoration: none;
+            font-size: 32px;
+            background-color: white;
+            border: 2px solid black;
+        }
+        .NextLevel a{
+            text-decoration: none;
+            font-size: 32px;
+            background-color: white;
+            border: 2px solid black;
+        }
+        .NextNextLevel a:link {
+            color:#ff0000;
+        }
+        .NextNextLevel a:visited {
+            color:#0000ff;
+        }
+        .NextNextLevel a:hover {
+            color:#ffcc00;
+            background-color: green;
+        }
+        .NextLevel a:link {
+            color:#ff0000;
+        }
+        .NextLevel a:visited {
+            color:#0000ff;
+        }
+        .NextLevel a:hover {
+            color:#ffcc00;
+            background-color: green;
+        }
+        .time{
+            float:right;
+            font-size: 35px;
+            margin-right: 5px;
+            background-color: aliceblue;
+        }
+        .emoji1{
+            float: left;
+            transform: translatey(0px);
+            animation: floating 4s ease-in-out infinite;
+            width: fit-content;
+            height: fit-content;
+            display: block;
+            margin-top: 60px;
+            margin-left: 30%;
+        }
+        .emoji2{
+            float: right;
+            transform: translatey(0px);
+            animation: floating 4s ease-in-out infinite;
+            width: fit-content;
+            height: fit-content;
+            display: block;
+            margin-top: 60px;
+            margin-right: 30%;
+        }
+        .emoji1 img{
+            width: 150px;
+            height: 150px;
+            margin: 0;
+        }
+        .emoji2 img{
+            width: 150px;
+            height: 150px;
+            margin: 0;
+        }
+        @keyframes floating {
+            0% {
+                box-shadow: 0 10px 20px 0px rgba(0, 0, 0, 0.6);
+                transform: translatey(0px);
+            }
+            50% {
+                box-shadow: 0 30px 20px 0px rgba(0, 0, 0, 0.2);
+                transform: translatey(-60px);
+            }
+            100% {
+                box-shadow: 0 10px 20px 0px rgba(0, 0, 0, 0.6);
+                transform: translatey(0px);
+            }
+        }
+    </style>
+</head>
+<body onload="startTime()">
+    <div class="companyname">
+        <span class="companylimited">
+            For Your Eyes Only 
+        </span>
+        <img src="companylogo.png" width="100px" height="75px">
+        <span class="FYEO">
+            FYEO
+        </span>
+        <span class="companylimited">
+            Company Limited
+        </span>
+    </div>
+
+    <div class="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Founder.html">Founder's Page</a>
+        <div class="dropdown">
+          <button class="dropbtn"><a href="Products.html">Products Catalogue</a>
+          </button>
+          <div class="dropdown-content">
+            <a href="Eyewear.html">Eyewear</a>
+            <a href="EyewearAcc.html">Eyewear Accessories</a>
+          </div>
+        </div> 
+        <a href="Games.html">Game</a>
+        <div class="time" id="txt"></div>
+      </div>
+
+      <div class="emoji1">
+        <img src="glassemoji.jpeg">
+      </div>
+      <div class="emoji2">
+        <img src="glassemoji.jpeg">
+      </div>
+
+      <div class="NextLevel">
+        <a href="Game1.html">Easy Mode</a>
+      </div>
+  
+      <div class="NextNextLevel">
+        <a href="Game2.html">Difficult Mode</a>
+      </div>
+
+      <script>
+        function startTime() {
+            const today = new Date();
+
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML = "Date: " + mm + '/' + dd + '/' + yyyy +
+            "   Time: " + h + ":" + m + ":" + s;
+            setTimeout(startTime, 1000);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};
+            return i;
+        }
+      </script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">  
+    <title>Card Game 1</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-image: url(gamebackground.jpeg);
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .gamecolumn{
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .allcards, .cardset, .view{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .allcards{
+        height: 400px;
+        width: 400px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .allcards .cardset{
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+        position: relative;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        height: calc(100% / 4 - 10px);
+        width: calc(100% / 4 - 10px);
+      }
+      .cardset .view{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 7px;
+        background: white;
+        pointer-events: none;
+        backface-visibility: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.25s linear;
+      }
+      .cardset .hide-view img{
+        width: 40px;
+      }
+      .cardset .back-view img{
+        max-width: 60px;
+      }
+      .cardset .back-view{
+        transform: rotateY(-180deg);
+      }
+      .cardset.flip .back-view{
+        transform: rotateY(0);
+      }
+      .cardset.flip .hide-view{
+        transform: rotateY(180deg);
+      }
+
+      @media screen and (max-width: 700px) {
+        .allcards{
+          height: 350px;
+          width: 350px;
+        }
+        .cardset .hide-view img{
+          width: 17px;
+        }
+        .cardset .back-view img{
+          max-width: 40px;
+        }
+      }
+
+      @media screen and (max-width: 530px) {
+        .allcards{
+          height: 300px;
+          width: 300px;
+        }
+        .cardset .hide-view img{
+          width: 15px;
+        }
+        .cardset .back-view img{
+          max-width: 35px;
+        }
+      }
+      .NextLevel{
+        position: fixed;
+        bottom: 10px;
+        right: 20px;
+      }
+      .HomePage{
+        position: fixed;
+        bottom: 10px;
+        left: 20px;
+      }
+      a{
+        text-decoration: none;
+        font-size: 32px;
+        background-color: white;
+        border: 2px solid black;
+      }
+      a:link {color:#ff0000;}
+      a:visited {color:#0000ff;}
+      a:hover {
+        color:#ffcc00;
+        background-color: green;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="HomePage">
+      <a href="Main.html">Home Page</a>
+    </div>
+    <div class="NextLevel">
+      <a href="Game2.html">Difficult Mode</a>
+    </div>
+
+    <div class="gamecolume">
+      <ul class="allcards">
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass1.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass2.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass3.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass4.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass5.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass6.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass7.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass8.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass1.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass2.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass3.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass4.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass5.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass6.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass7.jpeg" alt="answer">
+          </div>
+        </li>
+        <li class="cardset">
+          <div class="view hide-view">
+            <img src="frontimg.jpeg" alt="cover">
+          </div>
+          <div class="view back-view">
+            <img src="glass8.jpeg" alt="answer">
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      const Cardset = document.querySelectorAll(".cardset");
+
+        let Matched = 0;
+        let FirstCard, SecondCard;
+        let WrongMatch = false;
+
+        function flipCard({target: ThisCard}) {
+            if(FirstCard !== ThisCard && !WrongMatch) {
+                ThisCard.classList.add("flip");
+                if(!FirstCard) {
+                    return FirstCard = ThisCard;
+                }
+                SecondCard = ThisCard;
+                WrongMatch = true;
+                let FirstCardImg = FirstCard.querySelector(".back-view img").src,
+                SecondCardImg = SecondCard.querySelector(".back-view img").src;
+                matchCards(FirstCardImg, SecondCardImg);
+            }
+        }
+
+        function matchCards(img1, img2) {
+            if(img1 === img2) {
+                Matched++;
+                if(Matched == 8) {
+                    setTimeout(() => {
+                        return shuffleCard();
+                    }, 1000);
+                }
+                FirstCard.removeEventListener("click", flipCard);
+                SecondCard.removeEventListener("click", flipCard);
+                FirstCard = SecondCard = "";
+                return WrongMatch = false;
+            }
+            setTimeout(() => {
+                FirstCard.classList.remove("flip");
+                SecondCard.classList.remove("flip");
+                FirstCard = SecondCard = "";
+                WrongMatch = false;
+            }, 1200);
+        }
+
+        function shuffleCard() {
+            Matched = 0;
+            WrongMatch = false;
+            FirstCard = SecondCard = "";
+            let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
+            arr.sort(() => Math.random() > 0.5 ? 1 : -1);
+            Cardset.forEach((Cardset, i) => {
+                Cardset.classList.remove("flip");
+                let imgTag = Cardset.querySelector(".back-view img");
+                imgTag.src = `glass${arr[i]}.jpeg`;
+                Cardset.addEventListener("click", flipCard);
+            });
+        }
+
+        shuffleCard();
+            
+        Cardset.forEach(cardset => {
+            cardset.addEventListener("click", flipCard);
+        });
+    </script>
+
+  </body>
+</html>

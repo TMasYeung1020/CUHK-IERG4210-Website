@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Slide Show</title>
+    <script>
+
+
+        var PhotoList = new Array(8);
+
+        for(var i = 0; i < PhotoList.length; i++) {
+            PhotoList[i] = new Image();
+            PhotoList[i].src = "All_animals/animal0" + i +".jpg";
+        }
+        function RandomImage(){
+            document.RanPhoto.src = PhotoList[Math.floor(Math.random() * 8)].src;
+        }
+
+
+    </script>
+
+    <style>
+        body{
+            text-align: center;
+            background-color: lightpink;
+            border: 3px solid;
+            padding: 10px;
+        }
+        button{
+            width: 100px;
+            height: 25px;
+            margin-top: 5%;
+        }
+        img{
+            width: 500px;
+            height: 350px;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <img src="" name="RanPhoto">
+    </div>
+    <button onclick="RandomImage()">Click Me</button>
+</body>
+</html>

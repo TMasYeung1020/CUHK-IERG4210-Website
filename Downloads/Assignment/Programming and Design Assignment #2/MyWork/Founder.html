@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Founder Page</title>
+    <style>
+        body{
+            background-image: url(Mainbackground.avif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+        }
+        .companyname{
+            height:fit-content;
+            width: 100%;
+            background-image: url(companynamebackground.avif);
+            text-align: center;
+            margin-top: -7px;
+            margin-left: -7.25px;
+            border: 3px solid black;
+            float:left;
+        }
+        .FYEO{
+            position: absolute;
+            transform: translate(-180%, 120%);
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight:bolder;
+            font-style: italic;
+        }  
+        .companylimited{
+            font-size: 40px;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        .navbar {
+            float: left;
+            overflow: hidden;
+            background-image: url(Barbackground.avif);
+            margin-left: -7px;
+            width: 100%;
+            height: 58px;
+        }
+        .navbar a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .dropdown {
+            float: left;
+        }
+
+        .dropdown .dropbtn {
+            padding-top: 3px;
+            font-size: 20px;
+            border: none;
+            outline: none;
+            color: black;
+            background-color: inherit;
+        }
+
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: brown;
+            color: white;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: green;
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .enterpw{
+            text-align: center;
+            font-size: 20px;
+            color: brown;
+            width: 900px;
+            height: 125px;
+            margin: auto;
+        }
+        .time{
+            float:right;
+            font-size: 35px;
+            margin-right: 5px;
+            background-color: aliceblue;
+        }
+    </style>
+
+    <script>
+        var Password = "JavaScript";
+
+        function check(){
+            if (document.getElementById("myInput").value == Password){
+                window.location = "portfolio.html";
+            } 
+            else {
+                alert("Wrong Password!");
+            }
+        }
+    </script>
+</head>
+<body onload="startTime()">
+
+    <div class="companyname">
+        <span class="companylimited">
+            For Your Eyes Only 
+        </span>
+        <img src="companylogo.png" width="100px" height="75px">
+        <span class="FYEO">
+            FYEO
+        </span>
+        <span class="companylimited">
+            Company Limited
+        </span>
+    </div>
+
+    <div class="navbar">
+        <a href="Main.html">Home</a>
+        <a href="Founder.html">Founder's Page</a>
+        <div class="dropdown">
+          <button class="dropbtn"><a href="Products.html">Products Catalogue</a>
+          </button>
+          <div class="dropdown-content">
+            <a href="Eyewear.html">Eyewear</a>
+            <a href="EyewearAcc.html">Eyewear Accessories</a>
+          </div>
+        </div> 
+        <a href="Games.html">Game</a>
+        <div class="time" id="txt"></div>
+      </div>    
+
+    <div class="enterpw">
+        <br/><strong>Please Enter your Password to Access the Portfolio inside the Founder Page</strong>
+        <br/>
+        Password:
+        <input id="myInput" type="Password" value="">
+        <button id="myBtn" onclick="check()">Submit</button>
+            <script>
+                var input = document.getElementById("myInput");
+            input.addEventListener("keypress", function(event) {
+            if (event.key == "Enter") {
+                    event.preventDefault();
+                    document.getElementById("myBtn").click();
+                }
+            });
+                function startTime() {
+                const today = new Date();
+
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                var yyyy = today.getFullYear();
+
+                let h = today.getHours();
+                let m = today.getMinutes();
+                let s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('txt').innerHTML = "Date: " + mm + '/' + dd + '/' + yyyy +
+                "   Time: " + h + ":" + m + ":" + s;
+                setTimeout(startTime, 1000);
+            }
+
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i};
+                return i;
+            }
+            </script>
+    </div>
+
+</body>
+</html>

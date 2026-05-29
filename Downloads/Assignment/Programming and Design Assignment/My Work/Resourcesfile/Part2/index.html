@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+    <script>
+
+    </script>
+
+    <style>
+        body{
+            background-image: url(BackgroundImage.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        h1{
+            text-align: center;
+            background-image: url(HeadBackground.jpeg);
+            color: brown;
+            margin: -8px;
+            padding: 10px;
+        }
+        ul{
+            list-style-type: none;
+            margin-top: 8px;
+            margin-left: -8px;
+            margin-right: -8px;
+            padding: 0;
+            overflow: hidden;
+            background-image: url(BarBackground.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        ul li{
+            float: left;
+            border-right:1px solid #bbb;
+            width: 33.25%;
+        }
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        li a:hover{
+            background-color:whitesmoke;
+            color: black;
+        }
+        .Main{
+            float:left;
+            width: 100%;
+            text-align: center;
+        }
+        video{
+            height: 400px;
+            width: 600px;
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>Welcome to Thomas Yeung's Home</h1>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="hobby1.html">Hobbies</a></li>
+    </ul>
+    <div>
+        <center><video controls autoplay>
+            <source src="Video.mp4" type="video/mp4">
+        </video></center>
+        <br/>
+        <center><audio controls autoplay>
+            <source src="BGM.mp3" type="audio/mpeg">
+        </audio></center>
+    </div>
+
+</body>
+</html>

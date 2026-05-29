@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Index Page</title>
+    <style type="text/css">
+        body{
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-image: url(images/1095.jpg);
+            background-repeat: no-repeat;
+        }
+        .title{
+            font-size: larger;
+            width: 100%;
+            color:rgb(12, 72, 132);
+            background-color: aquamarine;
+        }
+        .colLeft{
+            float: left;
+            width: 12%;
+            background-color: darkred;
+        }
+        ul {
+            font-size: 10%;
+            font-weight: bold;
+            color: black;
+            list-style-type: none;
+            padding: 1px;
+        }
+        ul li{
+            padding: 2px;
+            margin-top: 2pt;
+            margin-bottom: 2pt;
+        }
+        ul li a {
+            display: block;
+            color: rgb(0, 0, 0);
+            background-color: rgb(255, 251, 202);
+            border-style: none;
+            border-radius: 10pt;
+            text-align: center;
+            padding: 3pt;
+            text-decoration: none;
+        }
+        .nav {
+            border-style: solid none solid none;
+            border-width: 3pt;
+            border-color: darkred;
+            background-color: lightgray;
+        }
+        .colmid{
+            float: left;
+            width: 73%;
+        }
+        .colright{
+            float: left;
+            width: 15%;
+            font-size: smaller;
+            height: 420px;
+            background-color:lightgray;
+            color:green;
+            font-family: Comic Sans MS, Comic Sans, cursive;
+        }
+        .end{
+            float: left;
+            width: 100%;
+            font-size: smaller;
+            background-color: rgb(209, 162, 222);
+        }
+        .coffeepicture{
+            margin-top: 6px;
+            margin-bottom: 6px;
+            margin-left: 2px;
+            margin-right: 2px;
+            border-radius: 5%;
+            padding: 6px;
+            border: 5px;
+            height: 300px;
+            width: 90%;
+            animation-name: imgAni;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes imgAni {
+            0% {background-color: yellow;} 
+            25% {background-color: purple;} 
+            50% {background-color: maroon;} 
+            75% {background-color: green;}
+            100% {background-color: lightblue;}
+        }
+        li a:hover{
+            background-color: rgb(194, 194, 194);
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="title"><b>Cat and Dong Caf&#233;</b></div>
+
+    <div class="colLeft nav">
+        <ul class="biglist">
+            <li><a href="homepage.html" target="middle">HOME</a></li>
+            <li><a href="goddess.html" target="middle">GODDESS</a></li>
+            <li><a href="sensitive_map.html" target="middle">KITTEN</a></li>
+            <li><a href="sig_dish_style.html" target="middle">SIGNATURE DISHES</a></li>
+        </ul>
+    </div>
+
+    <div class="colmid">
+        <iframe src="homepage.html" name="middle" height="720px" width="100%"></iframe>
+    </div>
+
+    <div class="colright nav">
+        "I'd rather take coffee than<br>
+        compliments just now."<br><br>
+        - Louisa May Alcott, Little<br>
+        Women!!
+        <br>
+        <a href="https://en.wikipedia.org/wiki/Coffee" target="middle">
+        <img src="images/poster.jpg" class="coffeepicture" width="90%"></img><a>
+    </div>
+
+    <div class="end">&#169; March 2023 - Cat and Dong Caf&#233;</div>
+    
+</body>
+</html>
