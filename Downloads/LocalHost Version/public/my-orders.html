@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders - Tutor Time</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .order-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
+        .status-paid { color: green; font-weight: bold; }
+        .status-pending { color: orange; font-weight: bold; }
+        .order-header { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Order History</h1>
+        <div id="orders-list">Loading orders...</div>
+        <a href="index.html">Back to Shop</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/api/user/orders');
+                const data = await response.json();
+
+                if (!data.success) {
+                    document.getElementById('orders-list').innerHTML = '<p>Please login to view orders.</p>';
+                    return;
+                }
+
+                const list = document.getElementById('orders-list');
+                if (data.orders.length === 0) {
+                    list.innerHTML = '<p>No orders found.</p>';
+                    return;
+                }
+
+                list.innerHTML = data.orders.map(order => `
+                    <div class="order-card">
+                        <div class="order-header">
+                            <strong>Order ID: #${order.oid}</strong>
+                            <span>${order.createdAt ? new Date(order.createdAt).toLocaleString() : 'Processing'}</span>
+                        </div>
+                        <p>Total: $${order.total_price}</p>
+                        <p>Status: <span class="status-${order.status.toLowerCase()}">${order.status}</span></p>
+                        ${order.status === 'PENDING' ? `<button onclick="repay(${order.oid})">Pay Now</button>` : ''}
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error(err);
+            }
+        });
+
+        // (加分項) 讓用戶可以再次支付 PENDING 訂單
+        function repay(oid) {
+            // 這裡可以導向回 checkout 邏輯，或直接顯示該訂單的支付連結
+            alert("Redirecting to Stripe for Order #" + oid);
+        }
+    </script>
+</body>
+</html>

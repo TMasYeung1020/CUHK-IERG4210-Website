@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutor Time Shop - CUHK IERG4210</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="shopping-cart-container" id="shopping-cart">
+        <strong>Shopping List: $<span id="cart-total">0.0</span></strong>
+        <div id="cart-details">
+            <div id="cart-items-list">
+                </div>
+            <button onclick="location.href='checkout.html'" style="width:100%; margin-top:10px;">Checkout</button>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo-section" onclick="location.href='index.html'" style="cursor:pointer">
+        <img src="uploads/logo.png" alt="Tutor Time Logo" id="site-logo" style="height: 60px; width: auto; margin-right: 15px;">            <h1>Tutor Time Booking System</h1>
+        </div>
+    </header>
+
+    <nav class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <a href="index.html">Home</a> > <span id="breadcrumb-category">Categories</span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="auth-status" style="display: flex; justify-content: center; margin: 20px 0;">
+        <a href="login.html" id="auth-link">View Panel</a>
+    </div>
+
+    <main class="container">
+        <aside>
+            <ul id="category-list">
+                <li style="color: #999; padding: 10px;">Loading categories...</li>
+            </ul>
+        </aside>
+
+        <section>
+            <h2 id="cat-title">Tutor Sessions</h2>
+            <div class="product-grid" id="product-list">
+                <div style="grid-column: 1/-1; text-align: center; color: #999; padding: 50px;">
+                    Fetching latest sessions...
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="promo-banner" style="background: linear-gradient(135deg, #740084, #bc4ed8); color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: none;">
+        <h3 style="margin: 0 0 10px 0;">✨ Current Offers</h3>
+        <ul id="promo-details" style="margin: 0; padding-left: 20px; font-size: 0.95em;">
+            </ul>
+    </div>
+
+    <section class="container" style="margin-top: 40px; text-align: center;">
+        <h3>Follow Us on X</h3>
+        <a class="twitter-follow-button" href="https://twitter.com/CUHKofficial" data-size="large">Follow @CUHKofficial</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </section>
+
+    <footer>
+        <p>CUHK IERG 4210 - powered by Thomas Yeung (1155203181) for credit</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+    // 定義初始化優惠橫幅的函式
+    async function initPromoBanner() {
+        const banner = document.getElementById('promo-banner');
+        const details = document.getElementById('promo-details');
+        
+        try {
+            // 1. 獲取所有分類
+            const categories = await API.getCategories();
+            let hasAnyPromo = false;
+            let promoItems = [];
+
+            // 2. 遍歷分類與產品（雖然較多請求，但在本地環境很快）
+            for (let cat of categories) {
+                const products = await API.getProducts(cat.catid);
+                for (let p of products) {
+                    const disc = await API.getDiscount(p.pid);
+                    
+                    // 如果有折扣且尚未被加入列表
+                    if (disc && !promoItems.includes(p.pid)) {
+                        hasAnyPromo = true;
+                        promoItems.push(p.pid);
+                        
+                        const li = document.createElement('li');
+                        li.style.marginBottom = "8px";
+                        
+                        // 根據折扣類型顯示不同文字
+                        if (disc.type === 'B2G1') {
+                            li.innerHTML = `<strong>${p.name}</strong>: <span style="color: #ffd700; font-weight: bold;">Buy ${disc.threshold - 1} Get 1 FREE</span> (Save 33%!)`;
+                        } else if (disc.type === 'BULK') {
+                            li.innerHTML = `<strong>${p.name}</strong>: <span style="color: #ffd700; font-weight: bold;">Special Price $${disc.discount_val}</span> for every ${disc.threshold} items!`;
+                        }
+                        details.appendChild(li);
+                    }
+                }
+            }
+
+            // 3. 如果有找到任何優惠，則顯示橫幅
+            if (hasAnyPromo) {
+                banner.style.display = 'block';
+            }
+        } catch (error) {
+            console.error("Error loading promo banner:", error);
+        }
+    }
+
+    // 頁面加載完成後執行
+    document.addEventListener('DOMContentLoaded', () => {
+        initPromoBanner();
+    });
+</script>
+
+</body>
+</html>

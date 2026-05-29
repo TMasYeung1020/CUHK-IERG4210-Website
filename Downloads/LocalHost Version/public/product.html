@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <title>Session Details - Tutor Time Shop</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        .product-swiper {
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            position: relative;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* 折扣標籤樣式 */
+        .promo-badge {
+            background: #fff3f3;
+            color: #d9534f;
+            padding: 12px;
+            border: 1px dashed #d9534f;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none; /* 預設隱藏，有折扣才顯示 */
+        }
+        .swiper-button-next, .swiper-button-prev { color: #740084; }
+        .swiper-pagination-bullet-active { background: #740084; }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-section" onclick="location.href='index.html'" style="cursor:pointer; display: flex; align-items: center;">
+            <img src="uploads/logo.png" alt="Tutor Time Logo" id="site-logo" style="height: 60px; width: auto; margin-right: 15px;">
+            <h1>Tutor Time Booking System</h1>
+        </div>
+    </header>
+
+    <div class="shopping-cart-container" id="shopping-cart">
+        <strong>Shopping List: $<span id="cart-total">0.0</span></strong>
+        <div id="cart-details">
+            <div id="cart-items-list"></div>
+            <button onclick="location.href='checkout.html'" style="width:100%; margin-top:10px;">Checkout</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <div style="display: flex; gap: 40px; margin-top: 20px;">
+            <div style="flex: 1;">
+                <div class="swiper product-swiper">
+                    <div class="swiper-wrapper" id="product-slides">
+                        <div class="swiper-slide"><img src="images/placeholder.jpg" alt="Loading"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+
+            <div style="flex: 1;">
+                <h2 id="p-name">Loading...</h2>
+                <h3 id="p-price" style="color: #740084;">$0.00</h3>
+                
+                <div id="p-promo" class="promo-badge"></div>
+
+                <p id="p-desc">正在載入描述...</p>
+                
+                <div style="margin-top: 20px;">
+                    <input type="number" id="p-qty" value="1" min="1" style="width: 50px; padding: 5px;">
+                    <button id="add-to-cart-btn" style="padding: 10px 20px; background: #740084; color: white; border: none; cursor: pointer; font-weight: bold;">
+                        Add to Shopping List
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pid = urlParams.get('pid');
+            if (!pid) return;
+
+            try {
+                // 1. 抓取產品資訊
+                const product = await fetch(`/api/product/${pid}`).then(res => res.json());
+                
+                // 2. 抓取折扣資訊 (Phase 6 新增 API)
+                const discount = await fetch(`/api/discounts/${pid}`).then(res => res.json());
+
+                if (product) {
+                    document.getElementById('p-name').innerText = product.name;
+                    document.getElementById('p-price').innerText = `$${product.price}`;
+                    document.getElementById('p-desc').innerText = product.description;
+
+                    // 渲染投影片
+                    const slideWrapper = document.getElementById('product-slides');
+                    slideWrapper.innerHTML = `
+                        <div class="swiper-slide"><img src="uploads/${product.image}"></div>
+                        <div class="swiper-slide"><img src="uploads/slideshow.jpg"></div>
+                    `;
+
+                    new Swiper('.product-swiper', {
+                        loop: true,
+                        pagination: { el: '.swiper-pagination' },
+                        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                        autoplay: { delay: 3000 }
+                    });
+
+                    // 3. 處理折扣提示邏輯
+                    const promoDiv = document.getElementById('p-promo');
+                    if (discount) {
+                        promoDiv.style.display = 'block';
+                        if (discount.type === 'B2G1') {
+                            promoDiv.innerHTML = `🔥 Limited Time: Buy ${discount.threshold - 1} Get 1 FREE!`;
+                        } else if (discount.type === 'BULK') {
+                            promoDiv.innerHTML = `🔥 Bulk Deal: Get ${discount.threshold} sessions for only $${discount.discount_val}!`;
+                        }
+                    }
+
+                    // 購物車按鈕
+                    document.getElementById('add-to-cart-btn').onclick = () => {
+                        const qty = parseInt(document.getElementById('p-qty').value);
+                        for(let i=0; i<qty; i++) {
+                            Cart.addItem(product.pid, product.name, product.price);
+                        }
+                    };
+                }
+            } catch (err) {
+                console.error("載入失敗", err);
+            }
+        });
+    </script>
+
+    <footer>
+        <p>CUHK IERG 4210 - powered by Thomas Yeung (1155203181) for credit</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Successful - Tutor Time</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .success-box {
+            max-width: 500px;
+            margin: 100px auto;
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .icon { font-size: 60px; color: #4CAF50; margin-bottom: 20px; }
+        h1 { color: #333; }
+        .order-info { margin: 20px 0; color: #666; font-size: 1.2em; }
+        .btn-home {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #740084;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-box">
+        <div class="icon">✅</div>
+        <h1>Payment Successful!</h1>
+        <p>Thank you for your purchase.</p>
+        
+        <div class="order-info">
+            Order ID: #<span id="order-id">---</span>
+        </div>
+
+        <a href="index.html" class="btn-home">Return to Home</a>
+    </div>
+
+    <script>
+        // 從 URL 解析訂單編號 (oid)
+        const urlParams = new URLSearchParams(window.location.search);
+        const oid = urlParams.get('oid');
+        if (oid) {
+            document.getElementById('order-id').innerText = oid;
+        }
+    </script>
+</body>
+</html>

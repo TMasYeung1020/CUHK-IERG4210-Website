@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Tutor Management</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <style>
+        /* 管理後台專用樣式補丁 */
+        .admin-form-section { background: #f4f4f9; padding: 25px; border-radius: 10px; border: 1px solid #ddd; margin: 20px 0; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .btn-save { background: #740084; color: white; padding: 12px 25px; border: none; cursor: pointer; border-radius: 5px; font-size: 16px; width: 100%; }
+        .btn-save:hover { background: #5a0066; }
+        .logout-btn { background: #e74c3c; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 5px; }
+        .logout-btn:hover { background: #c0392b; }
+        hr { margin: 40px 0; border: 0; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-section" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <h1>Admin Panel</h1>
+            <nav>
+                <a href="/index.html">View Store</a> | 
+                <a href="change-password.html" style="color: #ffc107;">Change Password</a> |
+                <a href="#" onclick="handleLogout()">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="container">
+        <section class="admin-form-section">
+            <h2>Add New Tutor Session</h2>
+            <form id="product-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Category:</label>
+                    <select id="cat-select" name="catid" required>
+                        <option value="">Loading categories...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tutor Name:</label>
+                    <input type="text" name="name" required placeholder="e.g. Prof. Thomas Yeung">
+                </div>
+
+                <div class="form-group">
+                    <label>Price ($):</label>
+                    <input type="number" step="0.1" name="price" required placeholder="e.g. 650.0">
+                </div>
+
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea name="description" rows="4" placeholder="Briefly describe the tutor's expertise..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Tutor Photo:</label>
+                    <input type="file" name="image" accept="image/*" required>
+                </div>
+
+                <button type="submit" class="btn-save">Confirm & Upload Session</button>
+            </form>
+        </section>
+
+        <hr>
+        <section class="admin-form-section" style="background: #eef2f7;">
+            <h2>Customer Orders (Phase 5)</h2>
+            <div id="orders-container">
+                <p style="color: #666;">Loading order history...</p>
+            </div>
+        </section>
+
+        <hr>
+        
+        <section>
+            <h2>Current Sessions</h2>
+            <div id="admin-product-list">
+                <p style="color: #666;">Use the form above to add your first session.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>CUHK IERG 4210 - Student ID: 1155203181</p>
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/admin/main.js"></script>
+    <script src="../js/admin/orders.js"></script>
+    
+    <script>
+        // 登出功能實作
+        async function handleLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                try {
+                    // 通知伺服器銷毀 Session
+                    await fetch('/api/logout', { method: 'POST' });
+                } catch (err) {
+                    console.error("Logout request failed:", err);
+                } finally {
+                    // 無論伺服器端成功與否，前端都清空 Token 並跳轉
+                    sessionStorage.clear();
+                    window.location.href = '../login.html';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
