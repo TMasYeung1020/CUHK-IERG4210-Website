@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]  # 如果你的預設分支是 master，請改成 "master"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 程式碼
+        uses: actions/checkout@v4
+
+      - name: 設定 Node.js 環境
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'  # 如果你用 pnpm 或 yarn 請改成相對應
+
+      - name: 安裝套件
+        run: npm ci
+
+      - name: 建置專案
+        run: npm run build
+
+      - name: 上傳建置檔案
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist  # Vite 預設輸出到 dist 資料夾
+
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

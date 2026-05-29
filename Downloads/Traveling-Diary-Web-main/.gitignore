@@ -1,0 +1,27 @@
+# Dependency directories — very large and can be regenerated from package.json
+node_modules/
+
+# Build output directories
+build/
+dist/
+
+# Local environment variable files containing sensitive information (must NEVER be committed)
+.env
+.env.local
+.env*.local
+
+# Local development cache files
+.cache
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Editor / IDE configuration files
+.vscode/
+.idea/
+*.swp
+*.swo
