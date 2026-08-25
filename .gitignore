@@ -1,0 +1,9 @@
+node_modules/
+.env
+database/shop.db
+public/uploads/*
+!public/uploads/*.jpg
+!public/uploads/*.png
+*.DS_Store
+*.pptx
+$RECYCLE.BIN/
