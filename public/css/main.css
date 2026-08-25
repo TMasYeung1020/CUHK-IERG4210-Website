@@ -1,163 +1,579 @@
-/* Phase 1 - Part 1.1: Global Styles & Layout */
+/* =============================================
+   Tutor Time Booking System — Design System
+   ============================================= */
+
+:root {
+    --primary:        #740084;
+    --primary-hover:  #5c0069;
+    --primary-pale:   #f5ecf7;
+    --gold:           #f5a623;
+    --text:           #1c1c2e;
+    --text-muted:     #6b7280;
+    --bg:             #f4f5f9;
+    --white:          #ffffff;
+    --border:         #e5e7eb;
+    --success:        #16a34a;
+    --warning:        #ca8a04;
+    --danger:         #dc2626;
+    --shadow-sm:      0 1px 4px rgba(0,0,0,.08);
+    --shadow-md:      0 4px 16px rgba(0,0,0,.10);
+    --shadow-lg:      0 8px 32px rgba(116,0,132,.14);
+    --radius:         12px;
+    --radius-sm:      8px;
+    --radius-xs:      6px;
+}
+
+/* === Reset ===================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     margin: 0;
     padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* 視覺統一：頂部 Row 1 */
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { display: block; }
+h1, h2, h3, h4 { line-height: 1.3; }
+
+/* === Header ==================================================== */
 header {
-    background-color: #740084; /* CUHK Purple */
-    color: white;
-    padding: 10px 20px;
+    background: linear-gradient(135deg, #740084 0%, #530060 100%);
+    color: #fff;
+    padding: 0 32px;
+    height: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    box-shadow: 0 2px 12px rgba(116,0,132,.35);
 }
 
 .logo-section {
     display: flex;
     align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+.logo-section h1 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .2px;
+    white-space: nowrap;
 }
 
 .logo-placeholder {
-    width: 50px;
-    height: 50px;
-    background-color: white;
-    color: #740084;
+    width: 42px;
+    height: 42px;
+    background: #fff;
+    color: var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    margin-right: 15px;
-    border-radius: 5px;
+    font-weight: 800;
+    font-size: .8rem;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
 }
 
-/* 視覺統一：底部 Credit Bar */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    margin-top: auto;
+/* === Auth Status Bar =========================================== */
+#auth-status {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 32px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    font-size: .85rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
 }
 
+#auth-status a,
+#auth-link,
+.auth-action-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: .82rem;
+    transition: background .18s, color .18s;
+    text-decoration: none !important;
+}
+
+#auth-status a[href*="login"],
+#auth-link {
+    background: var(--primary);
+    color: #fff !important;
+}
+
+#auth-status a[href*="login"]:hover,
+#auth-link:hover {
+    background: var(--primary-hover);
+}
+
+#auth-status a[href*="admin"],
+#auth-status a[href*="orders"] {
+    background: var(--primary-pale);
+    color: var(--primary) !important;
+    font-weight: 700;
+}
+
+#auth-status a#logout-link {
+    background: #fef2f2;
+    color: var(--danger) !important;
+}
+
+#auth-status a#logout-link:hover {
+    background: #fee2e2;
+}
+
+/* === Breadcrumb nav ============================================ */
+nav.container {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 9px 32px;
+    font-size: .82rem;
+    color: var(--text-muted);
+}
+
+nav.container a { color: var(--primary); }
+
+/* === Container ================================================= */
 .container {
-    padding: 20px;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 24px 32px;
 }
 
-/* 導航與分類 */
-nav {
-    background: #f4f4f4;
-    padding: 10px;
+/* === Main Layout (sidebar + content) =========================== */
+main.container {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding-top: 28px;
 }
 
+aside {
+    width: 210px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 88px;
+}
+
+section { flex: 1; min-width: 0; }
+
+/* === Section Title ============================================= */
+#cat-title, section > h2 {
+    margin: 0 0 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary-pale);
+}
+
+/* === Category Sidebar ========================================== */
+#category-list,
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.category-item {
+    padding: 13px 18px;
+    cursor: pointer;
+    transition: background .18s, color .18s, padding-left .18s;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: .88rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-item:last-child { border-bottom: none; }
+
+.category-item::before {
+    content: "📚";
+    font-size: .82em;
+    flex-shrink: 0;
+}
+
+.category-item:hover {
+    background: var(--primary-pale);
+    color: var(--primary);
+    padding-left: 22px;
+}
+
+.category-item.active {
+    background: var(--primary);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: inset 4px 0 0 var(--gold);
+}
+
+.category-item.active::before { filter: brightness(10); }
+
+/* === Product Grid ============================================== */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px 0;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 18px;
+    padding: 2px 0 24px;
 }
 
+/* === Product Card ============================================== */
 .product-card {
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-align: center;
+    transition: transform .2s ease, box-shadow .2s ease;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.product-card > a {
+    display: block;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+/* image wrapper (injected by JS with aspect-ratio 1/1) */
+.product-card div[style*="aspect-ratio"] {
+    background: #f0e6f2 !important;
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-card h3 {
+    margin: 12px 14px 4px;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
     text-align: center;
 }
 
-/* Phase 3 - Part 3.1: Shopping List Styles */
-.shopping-cart-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #fff;
-    border: 2px solid #740084;
-    padding: 10px;
-    z-index: 1000;
-    min-width: 200px;
+/* price paragraph injected by JS */
+.product-card > p,
+.product-card p {
+    margin: 4px 14px 10px;
+    font-weight: 700 !important;
+    font-size: 1.05rem !important;
+    color: var(--primary) !important;
 }
 
-/* 預設隱藏清單詳情，僅顯示 Total */
+/* Add to Cart button */
+.add-to-cart-btn,
+.product-card button {
+    display: block;
+    width: calc(100% - 28px);
+    margin: 0 14px 14px;
+    padding: 9px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: .84rem;
+    cursor: pointer;
+    transition: background .18s, transform .1s;
+}
+
+.add-to-cart-btn:hover,
+.product-card button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* === Promo Banner ============================================== */
+#promo-banner {
+    background: linear-gradient(135deg, #740084, #bc4ed8) !important;
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: var(--radius);
+    margin: 0 0 20px;
+}
+
+#promo-banner h3 { margin: 0 0 8px; font-size: .95rem; }
+#promo-details   { margin: 0; padding-left: 20px; font-size: .875rem; }
+#promo-details li { margin-bottom: 4px; }
+
+/* === Shopping Cart Widget ====================================== */
+.shopping-cart-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: var(--white);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    z-index: 1000;
+    min-width: 220px;
+    max-width: 290px;
+    box-shadow: var(--shadow-lg);
+    font-size: .88rem;
+}
+
+.shopping-cart-container strong {
+    color: var(--primary);
+    font-size: .9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.shopping-cart-container strong::before { content: "🛒"; }
+
 #cart-details {
     display: none;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--border);
     margin-top: 10px;
     padding-top: 10px;
 }
 
-/* 鼠標懸停時顯示詳情 (CSS Hover Requirement) */
-.shopping-cart-container:hover #cart-details {
-    display: block;
-}
+.shopping-cart-container:hover #cart-details { display: block; }
 
 .cart-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
-    font-size: 0.9em;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: .82rem;
+    color: var(--text-muted);
+    gap: 6px;
 }
 
 .cart-item input {
-    width: 40px;
+    width: 44px;
+    padding: 3px 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-align: center;
+    font-size: .82rem;
 }
 
-/* Add to end of your main.css */
-@media (max-width: 768px) {
-    main.container { flex-direction: column; }
-    aside { width: 100%; border-right: none; margin-bottom: 20px; }
-    .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-}
-
-/* 修改你的 main.css */
-
-.category-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    background: #f8f9fa;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #eee;
-}
-
-.category-item {
-    padding: 15px 20px;
+/* cart checkout button */
+.shopping-cart-container button,
+#cart-details button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 9px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: .86rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid #eee;
-    color: #555;
+    transition: background .18s;
+}
+
+.shopping-cart-container button:hover { background: var(--primary-hover); }
+
+/* === Generic Buttons ========================================== */
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 22px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: background .18s, transform .1s;
+}
+
+button:hover  { background: var(--primary-hover); transform: translateY(-1px); }
+button:active { transform: translateY(0); }
+
+/* === Forms (login / register) ================================== */
+main.container form,
+.login-box {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 36px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+}
+
+main.container[style*="max-width: 400px"] {
+    padding-top: 40px;
+}
+
+form h2 {
+    margin: 0 0 24px;
+    font-size: 1.35rem;
+    color: var(--primary);
+    text-align: center;
+}
+
+form label {
+    display: block;
+    font-size: .84rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+form input[type="email"],
+form input[type="password"],
+form input[type="text"],
+form input[type="number"] {
+    width: 100%;
+    padding: 10px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: .92rem;
+    transition: border-color .18s, box-shadow .18s;
+    outline: none;
+    font-family: inherit;
+}
+
+form input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(116,0,132,.12);
+}
+
+form > div { margin-bottom: 16px; }
+
+form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: .95rem;
+    margin-top: 4px;
+}
+
+#login-msg { color: var(--danger); font-size: .84rem; margin-top: 8px; }
+
+/* === Tables (orders, admin) ==================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    font-size: .88rem;
+}
+
+thead tr { background: var(--primary); color: #fff; }
+
+th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--primary-pale); }
+
+.status-paid    { display: inline-block; padding: 2px 10px; background: #dcfce7; color: var(--success); border-radius: 20px; font-size: .78rem; font-weight: 700; }
+.status-pending { display: inline-block; padding: 2px 10px; background: #fef9c3; color: var(--warning); border-radius: 20px; font-size: .78rem; font-weight: 700; }
+
+/* === Checkout / Success pages ================================== */
+.checkout-container,
+.success-box {
+    max-width: 600px;
+    margin: 40px auto;
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+/* === Footer ==================================================== */
+footer {
+    background: #1e1e2e;
+    color: #9ca3af;
+    text-align: center;
+    padding: 20px 32px;
+    margin-top: auto;
+    font-size: .82rem;
+}
+
+footer p { margin: 0; }
+
+/* === Admin panel tweaks ======================================== */
+.admin-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 24px;
 }
 
-.category-item:last-child {
-    border-bottom: none;
+/* === Utilities ================================================= */
+.text-center { text-align: center; }
+.mt-4 { margin-top: 16px; }
+.mt-8 { margin-top: 32px; }
+
+/* === Responsive ================================================ */
+@media (max-width: 900px) {
+    main.container { flex-direction: column; }
+    aside { width: 100%; position: static; }
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
 }
 
-/* 滑鼠經過與選中效果 */
-.category-item:hover {
-    background-color: #f0e6f2; /* 淡淡的紫色背景 */
-    color: #740084;
-    padding-left: 25px; /* 小小的位移感 */
+@media (max-width: 768px) {
+    header          { padding: 0 16px; height: 60px; }
+    .container      { padding: 16px; }
+    nav.container   { padding: 8px 16px; }
+    #auth-status    { padding: 7px 16px; }
+    .logo-section h1 { font-size: .95rem; }
+    .shopping-cart-container { right: 8px; min-width: 190px; font-size: .82rem; }
 }
 
-.category-item.active {
-    background: #740084;
-    color: white;
-    font-weight: bold;
-    box-shadow: inset 4px 0 0 #ffd700; /* 左側金色小裝飾 */
-}
-
-/* 分類名稱旁邊的小圖示（選用） */
-.category-item::before {
-    content: "📚"; 
-    margin-right: 10px;
-    font-size: 0.9em;
+@media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .logo-section h1 { display: none; }
 }
