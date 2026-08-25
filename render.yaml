@@ -16,3 +16,5 @@ services:
         sync: false
       - key: HOST_URL
         sync: false
+      - key: NODE_VERSION
+        value: 20.18.0
