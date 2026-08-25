@@ -1,10 +1,8 @@
-# IERG 4210 Phase 5: Secure Payment Integration
+# IERG 4210 — Tutor Time Booking System
 
-**Student Name:** Thomas Yeung
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-cuhk--ierg4210.onrender.com-orange?style=for-the-badge)](https://cuhk-ierg4210-website.onrender.com)
 
-**Student ID:** 1155203181
-
-**Project:** Tutor Time Booking System
+**Student:** Thomas Yeung (1155203181)
 
 ---
 
@@ -78,14 +76,14 @@ node server.js
 
 ---
 
-## 🧪 Testing Account
+## 🧪 Test Accounts
 
-* **Admin Panel:** `/admin/index.html` (Requires Admin Login)
-* **Testing Customer Account:** * Email: `test@example.com` (or use the Registration feature)
-* Password: `password123`
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | `admin@example.com` | `admin123` |
+| User | `user@example.com` | `user123` |
 
-
-* **Stripe Test Card:** `4242 4242 4242 4242`
+**Stripe Test Card:** `4242 4242 4242 4242` — any future expiry, any CVC
 
 ---
 
