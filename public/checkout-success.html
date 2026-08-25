@@ -2,52 +2,34 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful - Tutor Time</title>
     <link rel="stylesheet" href="css/main.css">
-    <style>
-        .success-box {
-            max-width: 500px;
-            margin: 100px auto;
-            text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        .icon { font-size: 60px; color: #4CAF50; margin-bottom: 20px; }
-        h1 { color: #333; }
-        .order-info { margin: 20px 0; color: #666; font-size: 1.2em; }
-        .btn-home {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #740084;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
-    <div class="success-box">
-        <div class="icon">✅</div>
-        <h1>Payment Successful!</h1>
-        <p>Thank you for your purchase.</p>
-        
-        <div class="order-info">
-            Order ID: #<span id="order-id">---</span>
+    <header>
+        <div class="logo-section" onclick="location.href='index.html'" style="cursor:pointer">
+            <img src="uploads/logo.png" alt="Tutor Time Logo" id="site-logo" style="height:48px;width:auto;margin-right:12px;">
+            <h1>Tutor Time Booking System</h1>
         </div>
+    </header>
 
-        <a href="index.html" class="btn-home">Return to Home</a>
-    </div>
+    <main class="container">
+        <div class="result-box">
+            <div class="result-icon">✅</div>
+            <h2>Payment Successful!</h2>
+            <p>Thank you for your purchase.</p>
+            <div class="order-info">Order ID: #<span id="order-id">---</span></div>
+            <a href="index.html" class="btn-home">Return to Home</a>
+        </div>
+    </main>
+
+    <footer><p>© 2025 Tutor Time Booking System · IERG 4210</p></footer>
 
     <script>
-        // 從 URL 解析訂單編號 (oid)
         const urlParams = new URLSearchParams(window.location.search);
         const oid = urlParams.get('oid');
-        if (oid) {
-            document.getElementById('order-id').innerText = oid;
-        }
+        if (oid) document.getElementById('order-id').innerText = oid;
     </script>
 </body>
 </html>

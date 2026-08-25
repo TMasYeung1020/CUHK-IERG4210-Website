@@ -2,35 +2,40 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Login - Tutor Time</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tutor Time</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <header>
         <div class="logo-section" onclick="location.href='index.html'" style="cursor:pointer">
-        <img src="uploads/logo.png" alt="Tutor Time Logo" id="site-logo" style="height: 60px; width: auto; margin-right: 15px;">            <h1>Tutor Time Booking System</h1>
-            <h1>Admin Login</h1>
+            <img src="uploads/logo.png" alt="Tutor Time Logo" id="site-logo" style="height:48px;width:auto;margin-right:12px;">
+            <h1>Tutor Time Booking System</h1>
         </div>
     </header>
 
-    <main class="container" style="max-width: 400px; margin-top: 50px;">
-        <form id="login-form">
-            <h2>Sign In</h2>
-            <div style="margin-bottom: 15px;">
-                <label>Email:</label><br>
-                <input type="email" id="email" required style="width: 100%; padding: 8px;">
+    <main class="container">
+        <div class="form-page">
+            <form id="login-form">
+                <h2>Sign In</h2>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn-pay">Login</button>
+            </form>
+            <p id="login-msg" class="form-msg" style="color:var(--danger);"></p>
+            <div class="form-footer">
+                <p>New user? <a href="register.html">Create an account</a></p>
             </div>
-            <div style="margin-bottom: 15px;">
-                <label>Password:</label><br>
-                <input type="password" id="password" required style="width: 100%; padding: 8px;">
-            </div>
-            <button type="submit" style="width: 100%; padding: 10px; background: #740084; color: white; border: none; cursor: pointer;">Login</button>
-        </form>
-        <p id="login-msg" style="color: red; margin-top: 10px;"></p>
-        <div style="margin-top: 20px; text-align: center;">
-        <p>New user? <a href="register.html" style="color: #740084; text-decoration: underline;">Create an account</a></p>
-</div>
+        </div>
     </main>
+
+    <footer><p>© 2025 Tutor Time Booking System · IERG 4210</p></footer>
 
     <script>
     document.getElementById('login-form').onsubmit = async (e) => {
@@ -46,11 +51,9 @@
 
         const data = await res.json();
         if (data.success) {
-            // --- 關鍵修正：必須存下 Token，否則 admin/main.js 會把你踢走 ---
             sessionStorage.setItem('csrfToken', data.csrfToken);
             sessionStorage.setItem('userEmail', email);
             sessionStorage.setItem('isAdmin', data.isAdmin);
-            // 存好後再跳轉
             window.location.href = 'admin/index.html';
         } else {
             document.getElementById('login-msg').innerText = data.message || "Login failed";

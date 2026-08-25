@@ -577,3 +577,122 @@ footer p { margin: 0; }
     .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
     .logo-section h1 { display: none; }
 }
+
+/* === Result pages (success / cancel) =========================== */
+.result-box {
+    max-width: 500px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 48px 40px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+}
+
+.result-icon { font-size: 56px; margin-bottom: 16px; line-height: 1; }
+
+.order-info { margin: 20px 0; color: var(--text-muted); font-size: 1.1rem; }
+
+.btn-home {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background .2s;
+}
+
+.btn-home:hover { background: var(--primary-hover); text-decoration: none; }
+
+/* === Checkout page ============================================= */
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+}
+
+.checkout-item-name { font-weight: 600; color: var(--text); font-size: 1.05rem; }
+.checkout-item-meta { color: var(--text-muted); font-size: .88rem; margin-top: 2px; }
+.checkout-item-promo { color: #d9534f; font-size: .85rem; font-weight: 700; margin-top: 4px; }
+
+.checkout-item-price { text-align: right; flex-shrink: 0; }
+.checkout-item-price .qty { font-weight: 500; color: var(--text); }
+.checkout-item-price del { color: var(--text-muted); font-size: .85rem; margin-right: 6px; }
+.checkout-item-price .final { font-weight: 700; }
+.checkout-item-price .final.discounted { color: #d9534f; font-size: 1.1rem; }
+
+.total-section {
+    text-align: right;
+    margin-top: 28px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    padding-top: 16px;
+}
+
+.btn-pay {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.btn-pay:hover { background: var(--primary-hover); }
+.btn-pay:disabled { opacity: .6; cursor: not-allowed; }
+
+.btn-back { display: inline-block; margin-top: 16px; color: var(--text-muted); font-size: .9rem; }
+.btn-back:hover { color: var(--primary); text-decoration: none; }
+
+/* === Orders page =============================================== */
+.order-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* === Form pages (login / register) ============================= */
+.form-page { max-width: 420px; margin: 48px auto; }
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; margin-bottom: 6px; font-weight: 500; color: var(--text); }
+.form-group input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: .95rem;
+    outline: none;
+    transition: border-color .2s;
+}
+.form-group input:focus { border-color: var(--primary); }
+
+.form-msg { margin-top: 10px; font-size: .9rem; }
+.form-footer { margin-top: 20px; text-align: center; font-size: .9rem; }

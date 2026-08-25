@@ -2,36 +2,41 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <title>User Registration - Tutor Time</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Tutor Time</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <header>
         <div class="logo-section" onclick="location.href='index.html'" style="cursor:pointer">
-        <img src="uploads/logo.png" alt="Tutor Time Logo" id="site-logo" style="height: 60px; width: auto; margin-right: 15px;">            <h1>Tutor Time Booking System</h1>
-            <h1>Create Account</h1>
+            <img src="uploads/logo.png" alt="Tutor Time Logo" id="site-logo" style="height:48px;width:auto;margin-right:12px;">
+            <h1>Tutor Time Booking System</h1>
         </div>
     </header>
 
-    <main class="container" style="max-width: 400px; margin-top: 50px;">
-        <form id="register-form">
-            <h2>Sign Up</h2>
-            <div style="margin-bottom: 15px;">
-                <label>Email (Unique):</label><br>
-                <input type="email" id="reg-email" required style="width: 100%; padding: 8px;">
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label>Password:</label><br>
-                <input type="password" id="reg-password" required style="width: 100%; padding: 8px;">
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label>Confirm Password:</label><br>
-                <input type="password" id="reg-confirm" required style="width: 100%; padding: 8px;">
-            </div>
-            <button type="submit" style="width: 100%; padding: 10px; background: #740084; color: white; border: none; cursor: pointer;">Register</button>
-        </form>
-        <p id="reg-msg" style="margin-top: 10px;"></p>
+    <main class="container">
+        <div class="form-page">
+            <form id="register-form">
+                <h2>Create Account</h2>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-confirm">Confirm Password</label>
+                    <input type="password" id="reg-confirm" required>
+                </div>
+                <button type="submit" class="btn-pay">Register</button>
+            </form>
+            <p id="reg-msg" class="form-msg"></p>
+        </div>
     </main>
+
+    <footer><p>© 2025 Tutor Time Booking System · IERG 4210</p></footer>
 
     <script>
         document.getElementById('register-form').onsubmit = async (e) => {
@@ -41,9 +46,8 @@
             const confirm = document.getElementById('reg-confirm').value;
             const msg = document.getElementById('reg-msg');
 
-            // 前端驗證：二次密碼必須相同 
             if (password !== confirm) {
-                msg.style.color = "red";
+                msg.style.color = 'var(--danger)';
                 msg.innerText = "Passwords do not match!";
                 return;
             }
@@ -56,11 +60,11 @@
 
             const data = await res.json();
             if (data.success) {
-                msg.style.color = "green";
+                msg.style.color = 'var(--success)';
                 msg.innerText = "Registration successful! Redirecting to login...";
                 setTimeout(() => { window.location.href = 'login.html'; }, 2000);
             } else {
-                msg.style.color = "red";
+                msg.style.color = 'var(--danger)';
                 msg.innerText = data.message;
             }
         };

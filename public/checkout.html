@@ -5,57 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Tutor Management</title>
     <link rel="stylesheet" href="css/main.css">
-    <style>
-        .checkout-container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        h1 { color: #740084; border-bottom: 2px solid #740084; padding-bottom: 10px; }
-        .cart-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 0; border-bottom: 1px solid #eee;
-        }
-        .total-section {
-            text-align: right; margin-top: 30px; font-size: 1.4em; font-weight: bold;
-        }
-        .btn-pay {
-            background: #740084; color: white; border: none; padding: 15px 30px;
-            border-radius: 6px; cursor: pointer; font-size: 1.1em; width: 100%; margin-top: 20px;
-        }
-        .btn-pay:hover { background: #5a0066; }
-        .btn-back { display: inline-block; margin-top: 20px; color: #666; text-decoration: none; }
-    </style>
 </head>
 <body>
-    <div class="checkout-container">
-        <h1>Your Shopping Cart</h1>
-        
-        <div id="cart-list">
-            <p>Loading items...</p>
+    <header>
+        <div class="logo-section" onclick="location.href='index.html'" style="cursor:pointer">
+            <img src="uploads/logo.png" alt="Tutor Time Logo" id="site-logo" style="height:48px;width:auto;margin-right:12px;">
+            <h1>Tutor Time Booking System</h1>
         </div>
+    </header>
 
-        <div id="checkout-summary" style="display: none;">
-            <div class="total-section">
-                Total: HKD $<span id="total-price">0.0</span>
+    <main class="container">
+        <div class="checkout-container">
+            <h2>Your Shopping Cart</h2>
+
+            <div id="cart-list">
+                <p>Loading items...</p>
             </div>
-            <button class="btn-pay" onclick="startCheckout()">Secure Checkout via Stripe</button>
-        </div>
 
-        <a href="index.html" class="btn-back">← Back to Store</a>
-    </div>
+            <div id="checkout-summary" style="display:none;">
+                <div class="total-section">
+                    Total: HKD $<span id="total-price">0.0</span>
+                </div>
+                <button class="btn-pay" onclick="startCheckout()">Secure Checkout via Stripe</button>
+            </div>
+
+            <a href="index.html" class="btn-back">← Back to Store</a>
+        </div>
+    </main>
+
+    <footer><p>© 2025 Tutor Time Booking System · IERG 4210</p></footer>
 
     <script src="js/api.js"></script>
-<script src="js/checkout.js"></script>
-
-<script>
-    // 只需要留下一行初始化呼叫即可
-    document.addEventListener('DOMContentLoaded', () => {
-        renderCheckoutPage(); 
-    });
-</script>
+    <script src="js/checkout.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => { renderCheckoutPage(); });
+    </script>
 </body>
 </html>

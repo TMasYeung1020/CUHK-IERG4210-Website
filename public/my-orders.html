@@ -2,34 +2,40 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Orders - Tutor Time</title>
     <link rel="stylesheet" href="css/main.css">
-    <style>
-        .order-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
-        .status-paid { color: green; font-weight: bold; }
-        .status-pending { color: orange; font-weight: bold; }
-        .order-header { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>My Order History</h1>
+    <header>
+        <div class="logo-section" onclick="location.href='index.html'" style="cursor:pointer">
+            <img src="uploads/logo.png" alt="Tutor Time Logo" id="site-logo" style="height:48px;width:auto;margin-right:12px;">
+            <h1>Tutor Time Booking System</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>My Order History</h2>
         <div id="orders-list">Loading orders...</div>
-        <a href="index.html">Back to Shop</a>
-    </div>
+        <div class="mt-8">
+            <a href="index.html" class="btn-back">← Back to Shop</a>
+        </div>
+    </main>
+
+    <footer><p>© 2025 Tutor Time Booking System · IERG 4210</p></footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const response = await fetch('/api/user/orders');
                 const data = await response.json();
+                const list = document.getElementById('orders-list');
 
                 if (!data.success) {
-                    document.getElementById('orders-list').innerHTML = '<p>Please login to view orders.</p>';
+                    list.innerHTML = '<p>Please <a href="login.html">login</a> to view your orders.</p>';
                     return;
                 }
 
-                const list = document.getElementById('orders-list');
                 if (data.orders.length === 0) {
                     list.innerHTML = '<p>No orders found.</p>';
                     return;
@@ -38,10 +44,10 @@
                 list.innerHTML = data.orders.map(order => `
                     <div class="order-card">
                         <div class="order-header">
-                            <strong>Order ID: #${order.oid}</strong>
+                            <strong>Order #${order.oid}</strong>
                             <span>${order.createdAt ? new Date(order.createdAt).toLocaleString() : 'Processing'}</span>
                         </div>
-                        <p>Total: $${order.total_price}</p>
+                        <p>Total: HKD $${order.total_price}</p>
                         <p>Status: <span class="status-${order.status.toLowerCase()}">${order.status}</span></p>
                         ${order.status === 'PENDING' ? `<button onclick="repay(${order.oid})">Pay Now</button>` : ''}
                     </div>
@@ -51,9 +57,7 @@
             }
         });
 
-        // (加分項) 讓用戶可以再次支付 PENDING 訂單
         function repay(oid) {
-            // 這裡可以導向回 checkout 邏輯，或直接顯示該訂單的支付連結
             alert("Redirecting to Stripe for Order #" + oid);
         }
     </script>
